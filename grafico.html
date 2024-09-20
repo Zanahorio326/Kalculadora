@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumo</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+        }
+        #mainContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #chartContainer {
+            max-width: 800px;
+            height: 400px;
+            margin: 20px 0;
+        }
+        #batteryChart {
+            width: 100% !important;
+            height: 100% !important;
+        }
+        #infoContainer {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px 0;
+        }
+        .infoBox {
+            width: 48%;
+            background-color: #f0f0f0;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="mainContainer">
+        <h1>Gráfica de Consumo de Batería por Aparato en un Determinado Tiempo</h1>
+        <div id="chartContainer">
+            <canvas id="batteryChart"></canvas>
+        </div>
+        <div id="infoContainer">
+            <div class="infoBox">
+                <h2>Datos Obtenidos</h2>
+                <input type="number" id="batteryCapacity" placeholder="Capacidad de Batería (mAh)" min="0" step="0.1">
+                <input type="number" id="appliancePower" placeholder="Potencia del aparato (W)" min="0" step="0.1">
+                <input type="number" id="applianceVoltage" placeholder="Voltaje del aparato (V)" min="0" step="0.1">
+                <button id="plotButton">Graficar</button>
+                <button id="expandButton">Gráfico Profesional</button>
+            </div>
+            <div class="infoBox">
+                <h2>Resultados</h2>
+                <p id="resultsText">Aquí aparecerán los resultados.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        const ctx = document.getElementById('batteryChart').getContext('2d');
+        const batteryChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['0h', '0.5h', '1h', '1.5h', '2h', '2.5h', '3h', '3.5h', '4h', '4.5h', '5h'],
+                datasets: [{
+                    label: 'Capacidad de la Batería (mAh)',
+                    data: [],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false,
+                },
+                {
+                    label: 'Amperios Entregados (A)',
+                    data: [],
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 2,
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Capacidad (mAh)'
+                        },
+                        ticks: {
+                            stepSize: 500,
+                            min: 0,
+                            max: 5000
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Tiempo (horas)'
+                        }
+                    }
+                }
+            }
+        });
+
+        let expanded = false; // Estado inicial
+
+        document.getElementById('plotButton').addEventListener('click', function() {
+            const batteryCapacity = parseFloat(document.getElementById('batteryCapacity').value);
+            const appliancePower = parseFloat(document.getElementById('appliancePower').value);
+            const applianceVoltage = parseFloat(document.getElementById('applianceVoltage').value);
+
+            const applianceCurrent = appliancePower / applianceVoltage; // Calcular corriente en amperios
+            const operatingHours = batteryCapacity / (applianceCurrent * 1000); // Convertir mAh a Ah
+
+            const resultsText = `El aparato de ${appliancePower} W que funciona con ${applianceVoltage} V consume ${applianceCurrent.toFixed(2)} A. Puede mantenerse encendido por ${operatingHours.toFixed(2)} horas con la batería de ${batteryCapacity} mAh.`;
+            document.getElementById('resultsText').innerText = resultsText;
+
+            updateChartData(batteryCapacity, applianceCurrent, operatingHours);
+        });
+
+        document.getElementById('expandButton').addEventListener('click', function() {
+            const button = document.getElementById('expandButton');
+            expanded = !expanded; // Cambiar estado
+
+            if (expanded) {
+                button.innerText = "Gráfica Electrónica"; // Cambiar texto del botón
+                batteryChart.data.labels = generateLabels(12); // Generar etiquetas para 12 horas
+                batteryChart.options.scales.x.ticks.stepSize = 0.5; // Saltos de media hora
+            } else {
+                button.innerText = "Gráfico Profesional"; // Cambiar texto del botón
+                batteryChart.data.labels = generateLabels(5); // Generar etiquetas para 5 horas
+                batteryChart.options.scales.x.ticks.stepSize = 1; // Saltos de 1 hora
+            }
+
+            const batteryCapacity = parseFloat(document.getElementById('batteryCapacity').value);
+            const appliancePower = parseFloat(document.getElementById('appliancePower').value);
+            const applianceVoltage = parseFloat(document.getElementById('applianceVoltage').value);
+            const applianceCurrent = appliancePower / applianceVoltage; // Calcular corriente en amperios
+            const operatingHours = batteryCapacity / (applianceCurrent * 1000); // Convertir mAh a Ah
+
+            updateChartData(batteryCapacity, applianceCurrent, operatingHours);
+            batteryChart.update(); // Actualizar el gráfico
+        });
+
+        function generateLabels(hours) {
+            let labels = [];
+            for (let i = 0; i <= hours * 2; i++) {
+                labels.push((i / 2).toFixed(1) + 'h'); // Genera etiquetas de 0h, 0.5h, 1h, ..., hasta 12h
+            }
+            return labels;
+        }
+
+        function updateChartData(batteryCapacity, applianceCurrent, operatingHours) {
+            const updatedDataCapacity = [];
+            const updatedDataCurrent = [];
+            const hours = expanded ? 12 : 5; // Determinar cuántas horas graficar
+            for (let i = 0; i <= hours; i += 0.5) {
+                const remainingCapacity = batteryCapacity - (i * applianceCurrent * 1000); 
+                updatedDataCapacity.push(remainingCapacity < 0 ? 0 : remainingCapacity);
+                updatedDataCurrent.push(i <= operatingHours ? applianceCurrent : 0); 
+            }
+
+            batteryChart.data.datasets[0].data = updatedDataCapacity;
+            batteryChart.data.datasets[1].data = updatedDataCurrent;
+            batteryChart.update(); // Actualizar el gráfico
+        }
+    </script>
+</body>
+</html>
