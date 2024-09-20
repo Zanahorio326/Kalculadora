@@ -19,40 +19,57 @@
         h1 {
             font-size: 4rem;
             color: #00ffcc; /* Color eléctrico */
-            animation: glow 1.5s infinite alternate, appear 1s forwards; /* Animación de resplandor y aparición */
+            animation: glow 1s infinite alternate; /* Animación de resplandor */
         }
         @keyframes glow {
             0% { text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; }
-            100% { text-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc; }
-        }
-        @keyframes appear {
-            0% {
-                opacity: 0;
-                transform: translateY(20px); /* Mueve las letras hacia abajo */
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0); /* Regresa a su posición original */
-            }
+            100% { text-shadow: 0 0 40px #00ffcc, 0 0 30px #00ffcc; }
         }
         .highlight {
             color: #ff4500; /* Color para resaltar la letra K */
             font-weight: bold;
-            font-size: 5rem; /* Aumentar tamaño de la K para destacar */
-            text-shadow: 0 0 10px #ff4500; /* Sombra para resaltar */
-            animation: bounce 1s forwards; /* Animación de rebote para la K */
+            font-size: 8rem; /* Aumentar tamaño de la K para destacar */
+            text-shadow: 0 0 50px #ff4500; /* Sombra para resaltar */
+            animation: drop 10.8s forwards, bounce 20.5s 10.8s forwards, scaleRotate 3s 3.3s forwards, pulse 3s infinite; /* Animaciones de caída, rebote, escala/rotación y pulso */
         }
-        @keyframes bounce {
+        @keyframes drop {
             0% {
-                transform: translateY(30px); /* Empuja la K hacia abajo */
+                transform: translateY(-100vh) rotate(0deg); /* Comienza fuera de la pantalla */
                 opacity: 0;
             }
-            50% {
+            60% {
                 opacity: 1;
-                transform: translateY(-10px); /* Rebote hacia arriba */
+                transform: translateY(100px) rotate(15deg); /* Caída con rotación */
             }
             100% {
+                transform: translateY(0) rotate(-5deg); /* Se detiene en su posición original con un leve giro */
+            }
+        }
+        @keyframes bounce {
+            0%, 100% {
                 transform: translateY(0); /* Regresa a su posición original */
+            }
+            50% {
+                transform: translateY(-40px); /* Rebote hacia arriba */
+            }
+        }
+        @keyframes scaleRotate {
+            0% {
+                transform: scale(1) rotate(0deg); /* Escala y rotación inicial */
+            }
+            50% {
+                transform: scale(10) rotate(20deg); /* Aumenta el tamaño y rota */
+            }
+            100% {
+                transform: scale(1) rotate(0deg); /* Regresa a su tamaño original */
+            }
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1); /* Tamaño original */
+            }
+            50% {
+                transform: scale(3.1); /* Aumenta ligeramente */
             }
         }
         button {
