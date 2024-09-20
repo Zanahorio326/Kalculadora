@@ -20,6 +20,8 @@
             font-size: 4rem;
             color: #00ffcc; /* Color eléctrico */
             animation: glow 1.5s infinite alternate; /* Animación de resplandor */
+            position: relative;
+            overflow: hidden; /* Para ocultar las letras que aparecen */
         }
         @keyframes glow {
             0% { text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; }
@@ -30,6 +32,25 @@
             font-weight: bold;
             font-size: 5rem; /* Aumentar tamaño de la K para destacar */
             text-shadow: 0 0 10px #ff4500; /* Sombra para resaltar */
+            position: relative; /* Para la animación */
+            z-index: 1; /* Asegura que la K esté por encima */
+        }
+        .resto {
+            position: absolute;
+            left: 0; /* Posición inicial */
+            opacity: 0; /* Comienza invisible */
+            animation: slideIn 1s forwards; /* Animación de deslizamiento */
+            z-index: 0; /* Detrás de la K */
+        }
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%); /* Desliza desde la izquierda */
+                opacity: 0; /* Comienza invisible */
+            }
+            100% {
+                transform: translateX(0); /* Termina en su posición original */
+                opacity: 1; /* Se vuelve visible */
+            }
         }
         button {
             padding: 15px 30px;
@@ -49,7 +70,9 @@
     </style>
 </head>
 <body>
-    <h1><span class="highlight">K</span>alculadora</h1>
+    <h1>
+        <span class="highlight">K</span><span class="resto">alculadora</span>
+    </h1>
     <button onclick="location.href='grafico'">Ir al Gráfico</button>
 </body>
 </html>
