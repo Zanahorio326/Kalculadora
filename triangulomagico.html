@@ -1,0 +1,279 @@
+<!DOCTYPE html><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triángulo CSS</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+        }
+        .container {
+            position: relative;
+            width: 400px;
+            height: 346px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-bottom: 346px solid #007BFF;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .circle {
+            width: 50px;
+            height: 50px;
+            background-color: #FF5733;
+            border-radius: 50%;
+            position: absolute;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .circle1 { top: 100px; left: 50%; transform: translateX(-50%); }
+        .circle2 { bottom: 60px; left: 25%; transform: translateX(-50%); }
+        .circle3 { bottom: 60px; right: 25%; transform: translateX(50%); }
+        .circle-number {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            width: 100%;
+        }
+        .button {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            line-height: 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 0 10px;
+            user-select: none;
+        }
+        .button:hover { background-color: #45a049; }
+        .input {
+            width: 60px;
+            height: 30px;
+            position: absolute;
+            bottom: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: none;
+            border-radius: 3px;
+            text-align: center;
+            font-size: 14px;
+            outline: none;
+        }
+        .title {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: white;
+        }
+        .recuadro {
+            background-color: white;
+            border: 2px solid #007BFF;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        .calculo-container {
+            background-color: white;
+            border: 2px solid #007BFF;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin-left: 20px;
+            text-align: center;
+        }
+        .calculo-texto {
+            font-size: 14px;
+            color: #333;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            text-align: center;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ley de Hom</h1>
+    <div class="container">
+        <div class="triangle"></div>
+        <div class="circle circle1" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <span class="circle-number">1</span>
+        </div>
+        <div class="circle circle2" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <span class="circle-number">2</span>
+        </div>
+        <div class="circle circle3" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <span class="circle-number">3</span>
+        </div>
+    </div>
+    <div class="button-container">
+        <div class="recuadro">
+            <button class="button" onclick="showModal('Voltaje')" draggable="true" ondragstart="drag(event)">
+                <input type="number" class="input" oninput="updateCalculo()" placeholder="0">
+                <div class="title">Voltaje</div>
+            </button>
+            <button class="button" onclick="showModal('Corriente')" draggable="true" ondragstart="drag(event)">
+                <input type="number" class="input" oninput="updateCalculo()" placeholder="0">
+                <div class="title">Corriente</div>
+            </button>
+            <button class="button" onclick="showModal('Resistencia')" draggable="true" ondragstart="drag(event)">
+                <input type="number" class="input" oninput="updateCalculo()" placeholder="0">
+                <div class="title">Resistencia</div>
+            </button>
+            <button class="button" onclick="showModal('Potencia')" draggable="true" ondragstart="drag(event)">
+                <input type="number" class="input" oninput="updateCalculo()" placeholder="0">
+                <div class="title">Potencia</div>
+            </button>
+        </div>
+        <div class="calculo-container">
+            <p class="calculo-texto">Aquí irán los cálculos</p>
+            <button class="button" onclick="calcularValores()">
+                <div class="title">Calcular</div>
+            </button>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="modalText">Texto del modal</p>
+        </div>
+    </div>
+
+    <script>
+        let formula = '';
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.innerHTML);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            const data = ev.dataTransfer.getData("text");
+            ev.target.innerHTML = data; // Cambia el contenido del círculo al botón soltado
+            updateCalculo();
+        }
+
+        function showModal(title) {
+            document.getElementById('modalText').innerText = 'Has presionado el botón de ' + title;
+            document.getElementById('myModal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function updateCalculo() {
+            const inputs = document.querySelectorAll('.input');
+            const values = Array.from(inputs).map(input => input.value).filter(value => value !== '');
+
+            if (values.length > 0) {
+                formula = values[0]; // Primer dato
+                if (values.length > 1) {
+                    formula += ' / ' + values[1]; // Segundo dato con división
+                }
+            } else {
+                formula = '';
+            }
+
+            const calculoTexto = document.querySelector('.calculo-texto');
+            calculoTexto.innerText = formula ? formula + ' = ?' : 'Aquí irán los cálculos';
+        }
+
+        function calcularValores() {
+            const inputs = document.querySelectorAll('.input');
+            const voltaje = parseFloat(inputs[0].value) || 0;
+            const corriente = parseFloat(inputs[1].value) || 0;
+
+            let resultado = '';
+
+            if (voltaje && corriente) {
+                const division = voltaje / corriente;
+                resultado = `Resultado: ${voltaje}V / ${corriente}A = ${division.toFixed(2)}Ω`;
+            } else {
+                resultado = 'Error: Debes ingresar valores válidos.';
+            }
+
+            document.querySelector('.calculo-texto').innerText = resultado;
+        }
+    </script>
+</body>
+</html>
