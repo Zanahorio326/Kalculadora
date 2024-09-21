@@ -5,10 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consumo</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .container { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
-        select, button { width: 100%; padding: 10px; margin: 5px 0; }
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0d0d0d;
+            color: #fff;
+        }
 
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #1a1a1a;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
+            animation: glowContainer 2s infinite alternate ease-in-out;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #00ffcc;
+            animation: glowText 2s infinite alternate ease-in-out;
+        }
+
+        h2, h3 {
+            color: #ff4500;
+            text-shadow: 0 0 20px #ff4500;
+            animation: pulse 4s infinite ease-in-out;
+        }
+
+        /* Animaciones */
+        @keyframes glowText {
+            0% {
+                text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+            }
+            100% {
+                text-shadow: 0 0 30px #00ffcc, 0 0 60px #00ffcc;
+            }
+        }
+
+        @keyframes glowContainer {
+            0% {
+                box-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(0, 255, 204, 0.6);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Opciones de los select */
         option[value="0"] { background-color: black; color: white; }
         option[value="1"] { background-color: brown; color: white; }
         option[value="2"] { background-color: red; color: white; }
@@ -27,6 +97,13 @@
         option[value="100000"] { background-color: blue; color: white; }
         option[value="0.1"] { background-color: gold; color: black; }
         option[value="0.01"] { background-color: silver; color: black; }
+
+        /* Botón de cálculo */
+        button:hover {
+            background-color: #00ffcc;
+            color: #000;
+            transition: background-color 0.3s ease-in-out;
+        }
     </style>
 </head>
 <body>
@@ -63,12 +140,12 @@
 
         <label for="multiplier">Multiplicador (Color):</label>
         <select id="multiplier">
-            <option value="1">Marrón (10^1)</option>
-            <option value="10">Rojo (10^2)</option>
-            <option value="100">Naranja (10^3)</option>
-            <option value="1000">Amarillo (10^4)</option>
-            <option value="10000">Verde (10^5)</option>
-            <option value="100000">Azul (10^6)</option>
+            <option value="10">Marrón (10^1)</option>
+            <option value="100">Rojo (10^2)</option>
+            <option value="1000">Naranja (10^3)</option>
+            <option value="10000">Amarillo (10^4)</option>
+            <option value="100000">Verde (10^5)</option>
+            <option value="1000000">Azul (10^6)</option>
             <option value="0.1">Oro (10^-1)</option>
             <option value="0.01">Plata (10^-2)</option>
         </select>
