@@ -182,7 +182,7 @@
             const resistanceHigh = resistanceValue * (1 + tolerance);
             const formula = `Fórmula: (${band1} × 10 + ${band2}) × ${multiplier} = ${resistanceValue.toFixed(2)} Ω`;
 
-            document.getElementById('result').innerText = `Valor de la resistencia: ${resistanceValue.toFixed(2)} ohmios\nRango de tolerancia: ${resistanceLow.toFixed(2)} - ${resistanceHigh.toFixed(2)} ohmios`;
+            document.getElementById('result').innerText = `Valor de la resistencia: ${resistanceValue.toFixed(2)} Ω\nRango de tolerancia: ${resistanceLow.toFixed(2)} - ${resistanceHigh.toFixed(2)} ohmios`;
             document.getElementById('formula').innerText = formula;
         }
     </script>
