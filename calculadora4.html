@@ -73,6 +73,17 @@
             <option value="0.01">Plata (10^-2)</option>
         </select>
 
+        <label for="tolerance">Tolerancia (Color):</label>
+        <select id="tolerance">
+            <option value="0.20">Marrón (±1%)</option>
+            <option value="0.10">Rojo (±2%)</option>
+            <option value="0.05">Verde (±0.5%)</option>
+            <option value="0.02">Azul (±0.25%)</option>
+            <option value="0.01">Violeta (±0.1%)</option>
+            <option value="0.05">Plata (±10%)</option>
+            <option value="1">Ninguno (±20%)</option>
+        </select>
+
         <button onclick="calculateResistance()">Calcular Resistencia</button>
 
         <h2 id="result"></h2>
@@ -84,11 +95,14 @@
             const band1 = parseInt(document.getElementById('band1').value);
             const band2 = parseInt(document.getElementById('band2').value);
             const multiplier = parseFloat(document.getElementById('multiplier').value);
+            const tolerance = parseFloat(document.getElementById('tolerance').value);
 
-            const resistanceValue = (band1 * 10 + band2) * multiplier; // Ajustado para dos dígitos y un multiplicador
-            const formula = `Fórmula utilizada: (${band1} × 10 + ${band2}) × ${multiplier} = ${resistanceValue} ohmios`;
+            const resistanceValue = (band1 * 10 + band2) * multiplier; 
+            const resistanceLow = resistanceValue * (1 - tolerance);
+            const resistanceHigh = resistanceValue * (1 + tolerance);
+            const formula = `Fórmula utilizada: (${band1} × 10 + ${band2}) × ${multiplier} = ${resistanceValue.toFixed(2)} ohmios`;
 
-            document.getElementById('result').innerText = `Valor de la resistencia: ${resistanceValue} ohmios`;
+            document.getElementById('result').innerText = `Valor de la resistencia: ${resistanceValue.toFixed(2)} ohmios\nRango de tolerancia: ${resistanceLow.toFixed(2)} - ${resistanceHigh.toFixed(2)} ohmios`;
             document.getElementById('formula').innerText = formula;
         }
     </script>
