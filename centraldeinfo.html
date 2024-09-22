@@ -80,6 +80,9 @@
             justify-content: space-between;
             align-items: center;
             text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
         }
         button {
             padding: 10px 20px;
@@ -90,7 +93,7 @@
             border-radius: 10px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
-            margin-top: 55px; /* Ajusta este valor para bajar o subir el botón */
+            margin-top: 55px;
         }
         button:hover {
             background-color: #2b1c03;
@@ -98,13 +101,23 @@
         }
         .button-card p {
             color: black;
-            margin-top: 0; /* Elimina el margen superior */
-            margin-bottom: 0; /* Elimina espacio debajo de la descripción */
-            transform: translateY(-65px); /* Ajusta este valor para mover la descripción hacia arriba */
+            margin-top: 0;
+            margin-bottom: 0;
+            transform: translateY(-65px);
         }
         .inicio-btn {
             position: absolute;
             bottom: 20px;
+        }
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -133,5 +146,15 @@
         </div>
     </div>
     <button class="inicio-btn" onclick="location.href='index.html'">Inicio</button>
+    <script>
+        window.onload = function() {
+            const bookCards = document.querySelectorAll('.button-card');
+            bookCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.animation = `fadeInUp 1s ease forwards`;
+                }, index * 200); // Retrasa la animación de cada libro
+            });
+        };
+    </script>
 </body>
 </html>
