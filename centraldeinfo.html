@@ -3,78 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca de Botones</title>
+    <title>Consumo</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-image: url('https://zanahorio326.github.io/Kalculadora/biblioteca.jpg'); /* Ruta a la imagen */
-            background-size: cover; /* Ajusta la imagen al tamaño de la pantalla */
-            background-position: center; /* Centra la imagen */
-            margin: 0;
-            padding: 20px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
+            background-image: url('https://zanahorio326.github.io/Kalculadora/biblioteca.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+        }
+        h1 {
+            font-size: 4rem;
+            color: #00ffcc;
+            animation: glow 1s infinite alternate;
             text-align: center;
-            color: white; /* Cambia el color del texto si es necesario */
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; }
+            100% { text-shadow: 0 0 40px #00ffcc, 0 0 30px #00ffcc; }
+        }
+        .highlight {
+            color: #ff4500;
+            font-weight: bold;
+            font-size: 8rem;
+            text-shadow: 0 0 50px #ff4500;
+            animation: drop 10.8s forwards, bounce 20.5s 10.8s forwards, scaleRotate 3s 3.3s forwards, pulse 3s infinite;
+        }
+        @keyframes drop {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 0; }
+            60% { opacity: 1; transform: translateY(100px) rotate(15deg); }
+            100% { transform: translateY(0) rotate(-5deg); }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-40px); }
+        }
+        @keyframes scaleRotate {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(10) rotate(20deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(3.1); }
         }
         .library {
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
             justify-content: center;
-            background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para mejorar la legibilidad */
+            background: rgba(0, 0, 0, 0.5);
             padding: 20px;
             border-radius: 10px;
+            margin-top: 20px;
+            max-width: 770px;
         }
         .button-card {
-            background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente para los botones */
+            background-image: url('https://zanahorio326.github.io/Kalculadora/Prueba1.png');
+            background-size: cover;
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 10px;
             width: 100px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color: black;
         }
         button {
-            padding: 10px;
-            font-size: 14px;
-            cursor: pointer;
+            padding: 15px 30px;
+            font-size: 1.5rem;
             background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.2s;
         }
         button:hover {
             background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .button-card p {
+            color: black;
+        }
+        .inicio-btn {
+            position: absolute;
+            bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <div>
-        <h1>Biblioteca de Botones</h1>
-        <div class="library">
-            <div class="button-card">
-                <button onclick="location.href='carpeta1.html'">Carpeta 1</button>
-                <p>Descripción de Carpeta 1</p>
-            </div>
-            <div class="button-card">
-                <button onclick="location.href='carpeta2.html'">Carpeta 2</button>
-                <p>Descripción de Carpeta 2</p>
-            </div>
-            <div class="button-card">
-                <button onclick="location.href='carpeta3.html'">Carpeta 3</button>
-                <p>Descripción de Carpeta 3</p>
-            </div>
-            <div class="button-card">
-                <button onclick="location.href='carpeta4.html'">Carpeta 4</button>
-                <p>Descripción de Carpeta 4</p>
-            </div>
-            <div class="button-card">
-                <button onclick="location.href='carpeta5.html'">Carpeta 5</button>
-                <p>Descripción de Carpeta 5</p>
-            </div>
+    <h1>Bibliote - <span class="highlight">K</span></h1>
+    <div class="library">
+        <div class="button-card">
+            <button onclick="location.href='carpeta1.html'">Carpeta 1</button>
+            <p>Descripción de Carpeta 1</p>
         </div>
+        <div class="button-card">
+            <button onclick="location.href='carpeta2.html'">Carpeta 2</button>
+            <p>Descripción de Carpeta 2</p>
+        </div>
+        <div class="button-card">
+            <button onclick="location.href='carpeta3.html'">Carpeta 3</button>
+            <p>Descripción de Carpeta 3</p>
+        </div>
+        <div class="button-card">
+            <button onclick="location.href='carpeta4.html'">Carpeta 4</button>
+            <p>Descripción de Carpeta 4</p>
+        </div>
+        <div class="button-card">
+            <button onclick="location.href='carpeta5.html'">Carpeta 5</button>
+            <p>Descripción de Carpeta 5</p>
+        </div>
+        <div class="button-card">
+            <button onclick="location.href='carpeta6.html'">Carpeta 6</button>
+            <p>Descripción de Carpeta 6</p>
+        </div>
+        <div class="button-card">
+            <button onclick="location.href='carpeta7.html'">Carpeta 7</button>
+            <p>Descripción de Carpeta 7</p>
+        </div>
+        <div class="button-card">
+            <button onclick="location.href='carpeta8.html'">Carpeta 8</button>
+            <p>Descripción de Carpeta 8</p>
+        </div>
+        <div class="button-card">
+            <button onclick="location.href='carpeta9.html'">Carpeta 9</button>
+            <p>Descripción de Carpeta 9</p>
+        </div>
+        <div class="button-card">
+            <button onclick="location.href='carpeta10.html'">Carpeta 10</button>
+            <p>Descripción de Carpeta 10</p>
+        </div>        
     </div>
+    <button class="inicio-btn" onclick="location.href='index.html'">Inicio</button>
 </body>
 </html>
