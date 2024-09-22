@@ -109,6 +109,25 @@
             position: absolute;
             bottom: 20px;
         }
+        .shelf-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #6c340e;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .left-btn {
+            left: 10px;
+        }
+        .right-btn {
+            right: 10px;
+        }
         @keyframes fadeInUp {
             0% {
                 opacity: 0;
@@ -123,37 +142,70 @@
 </head>
 <body>
     <h1>Bibliote - <span class="highlight">K</span></h1>
-    <div class="library">
-        <div class="button-card">
-            <button onclick="location.href='carpeta1.html'">Carpeta 1</button> 
-            <p>Descripción de Carpeta 1</p>
-        </div>
-        <div class="button-card">
-            <button onclick="location.href='carpeta2.html'">Carpeta 2</button>
-            <p>Descripción de Carpeta 2</p>
-        </div>
-        <div class="button-card">
-            <button onclick="location.href='carpeta3.html'">Carpeta 3</button>
-            <p>Descripción de Carpeta 3</p>
-        </div>
-        <div class="button-card">
-            <button onclick="location.href='carpeta4.html'">Carpeta 4</button>
-            <p>Descripción de Carpeta 4</p>
-        </div>
-        <div class="button-card">
-            <button onclick="location.href='carpeta5.html'">Carpeta 5</button>
-            <p>Descripción de Carpeta 5</p>
-        </div>
+
+    <button class="shelf-btn left-btn" onclick="changeShelf(-1)">Estantería Anterior</button>
+
+    <div class="library" id="library">
+        <!-- Los libros se llenarán dinámicamente -->
     </div>
+
+    <button class="shelf-btn right-btn" onclick="changeShelf(1)">Siguiente Estantería</button>
+
     <button class="inicio-btn" onclick="location.href='index.html'">Inicio</button>
+
     <script>
-        window.onload = function() {
-            const bookCards = document.querySelectorAll('.button-card');
-            bookCards.forEach((card, index) => {
+        const books = [
+            { title: 'Carpeta 1', description: 'Descripción de Carpeta 1', link: 'carpeta1.html' },
+            { title: 'Carpeta 2', description: 'Descripción de Carpeta 2', link: 'carpeta2.html' },
+            { title: 'Carpeta 3', description: 'Descripción de Carpeta 3', link: 'carpeta3.html' },
+            { title: 'Carpeta 4', description: 'Descripción de Carpeta 4', link: 'carpeta4.html' },
+            { title: 'Carpeta 5', description: 'Descripción de Carpeta 5', link: 'carpeta5.html' },
+            { title: 'Carpeta 6', description: 'Descripción de Carpeta 6', link: 'carpeta6.html' },
+            { title: 'Carpeta 7', description: 'Descripción de Carpeta 7', link: 'carpeta7.html' },
+            { title: 'Carpeta 8', description: 'Descripción de Carpeta 8', link: 'carpeta8.html' },
+            { title: 'Carpeta 9', description: 'Descripción de Carpeta 9', link: 'carpeta9.html' },
+            { title: 'Carpeta 10', description: 'Descripción de Carpeta 10', link: 'carpeta10.html' },
+        ];
+
+        let currentShelf = 0;
+
+        function renderBooks() {
+            const libraryDiv = document.getElementById('library');
+            libraryDiv.innerHTML = ''; // Limpiar libros anteriores
+
+            const start = currentShelf * 5;
+            const end = start + 5;
+            const currentBooks = books.slice(start, end);
+
+            currentBooks.forEach((book, index) => {
+                const bookCard = document.createElement('div');
+                bookCard.classList.add('button-card');
+                bookCard.innerHTML = `
+                    <button onclick="location.href='${book.link}'">${book.title}</button>
+                    <p>${book.description}</p>
+                `;
+                libraryDiv.appendChild(bookCard);
+
+                // Agregar animación
                 setTimeout(() => {
-                    card.style.animation = `fadeInUp 1s ease forwards`;
-                }, index * 200); // Retrasa la animación de cada libro
+                    bookCard.style.animation = `fadeInUp 1s ease forwards`;
+                }, index * 200);
             });
+        }
+
+        function changeShelf(direction) {
+            const maxShelf = Math.floor(books.length / 5);
+            currentShelf += direction;
+
+            // Asegurarse de que no salga de los límites
+            if (currentShelf < 0) currentShelf = 0;
+            if (currentShelf > maxShelf) currentShelf = maxShelf;
+
+            renderBooks();
+        }
+
+        window.onload = function() {
+            renderBooks(); // Cargar los primeros libros al inicio
         };
     </script>
 </body>
