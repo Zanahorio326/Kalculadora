@@ -3,12 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consumo</title>
+    <title>Calculadora de Resistencia (6 bandas)</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .container { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
-        select, button { width: 100%; padding: 10px; margin: 5px 0; }
-        
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0d0d0d;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #1a1a1a;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
+            animation: glowContainer 2s infinite alternate ease-in-out;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #00ffcc;
+            animation: glowText 2s infinite alternate ease-in-out;
+        }
+
+        h2, h3 {
+            color: #ff4500;
+            text-shadow: 0 0 20px #ff4500;
+            animation: pulse 4s infinite ease-in-out;
+        }
+
+        /* Animaciones */
+        @keyframes glowText {
+            0% {
+                text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+            }
+            100% {
+                text-shadow: 0 0 30px #00ffcc, 0 0 60px #00ffcc;
+            }
+        }
+
+        @keyframes glowContainer {
+            0% {
+                box-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(0, 255, 204, 0.6);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Opciones de los select */
         option[value="0"] { background-color: black; color: white; }
         option[value="1"] { background-color: brown; color: white; }
         option[value="2"] { background-color: red; color: white; }
@@ -27,6 +97,13 @@
         option[value="100000"] { background-color: blue; color: white; }
         option[value="0.1"] { background-color: gold; color: black; }
         option[value="0.01"] { background-color: silver; color: black; }
+
+        /* Botón de cálculo */
+        button:hover {
+            background-color: #00ffcc;
+            color: #000;
+            transition: background-color 0.3s ease-in-out;
+        }
     </style>
 </head>
 <body>
@@ -75,45 +152,32 @@
             <option value="9">Blanco</option>
         </select>
 
-        <label for="band4">Cuarto dígito (Color):</label>
-        <select id="band4">
-            <option value="0">Negro</option>
-            <option value="1">Marrón</option>
-            <option value="2">Rojo</option>
-            <option value="3">Naranja</option>
-            <option value="4">Amarillo</option>
-            <option value="5">Verde</option>
-            <option value="6">Azul</option>
-            <option value="7">Violeta</option>
-            <option value="8">Gris</option>
-            <option value="9">Blanco</option>
-        </select>
-
         <label for="multiplier">Multiplicador (Color):</label>
         <select id="multiplier">
-            <option value="1">Marrón (10^1)</option>
-            <option value="10">Rojo (10^2)</option>
-            <option value="100">Naranja (10^3)</option>
-            <option value="1000">Amarillo (10^4)</option>
-            <option value="10000">Verde (10^5)</option>
-            <option value="100000">Azul (10^6)</option>
+            <option value="10">Marrón (10^1)</option>
+            <option value="100">Rojo (10^2)</option>
+            <option value="1000">Naranja (10^3)</option>
+            <option value="10000">Amarillo (10^4)</option>
+            <option value="100000">Verde (10^5)</option>
+            <option value="1000000">Azul (10^6)</option>
             <option value="0.1">Oro (10^-1)</option>
             <option value="0.01">Plata (10^-2)</option>
         </select>
 
-        <label for="temperature">Coeficiente de temperatura (Color):</label>
-        <select id="temperature">
-            <option value="100">Marrón (100 ppm/°C)</option>
-            <option value="50">Rojo (50 ppm/°C)</option>
-            <option value="15">Verde (15 ppm/°C)</option>
-            <option value="25">Azul (25 ppm/°C)</option>
-            <option value="5">Violeta (5 ppm/°C)</option>
+        <label for="tolerance">Tolerancia (%):</label>
+        <select id="tolerance">
+            <option value="5">Marrón (±5%)</option>
+            <option value="10">Rojo (±10%)</option>
+            <option value="20">Verde (±20%)</option>
         </select>
 
         <button onclick="calculateResistance()">Calcular Resistencia</button>
 
         <h2 id="result"></h2>
         <h3 id="formula"></h3>
+
+        <button onclick="location.href='centracal'">Resistencias</button>
+        
     </div>
 
     <script>
@@ -121,13 +185,28 @@
             const band1 = parseInt(document.getElementById('band1').value);
             const band2 = parseInt(document.getElementById('band2').value);
             const band3 = parseInt(document.getElementById('band3').value);
-            const band4 = parseInt(document.getElementById('band4').value);
             const multiplier = parseFloat(document.getElementById('multiplier').value);
+            const tolerance = parseFloat(document.getElementById('tolerance').value);
 
-            const resistanceValue = (band1 * 1000 + band2 * 100 + band3 * 10 + band4) * multiplier;
-            const formula = `Fórmula utilizada: (${band1} × 1000 + ${band2} × 100 + ${band3} × 10 + ${band4}) × ${multiplier} = ${resistanceValue} ohmios`;
+            // Validación de entradas
+            if (isNaN(band1) || isNaN(band2) || isNaN(band3) || isNaN(multiplier)) {
+                alert("Por favor, selecciona un valor para cada banda.");
+                return;
+            }
 
-            document.getElementById('result').innerText = `Valor de la resistencia: ${resistanceValue} ohmios`;
+            const resistanceValue = (band1 * 100 + band2 * 10 + band3) * multiplier;
+            const formula = `Fórmula utilizada: (${band1} × 100 + ${band2} × 10 + ${band3}) × ${multiplier} = ${resistanceValue} ohmios`;
+
+            // Cálculo del rango de tolerancia
+            const toleranceValue = (tolerance / 100) * resistanceValue;
+            const minValue = resistanceValue - toleranceValue;
+            const maxValue = resistanceValue + toleranceValue;
+
+            // Formato del resultado
+            document.getElementById('result').innerHTML = `
+                <strong>Valor de la resistencia:</strong> ${resistanceValue.toFixed(2)} ohmios<br>
+                <strong>Rango de tolerancia:</strong> ${minValue.toFixed(2)} - ${maxValue.toFixed(2)} ohmios
+            `;
             document.getElementById('formula').innerText = formula;
         }
     </script>
