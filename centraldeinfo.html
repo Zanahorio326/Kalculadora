@@ -56,7 +56,7 @@
         .library {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 25px;
             justify-content: center;
             background: rgba(0, 0, 0, 0.5);
             padding: 20px;
@@ -66,31 +66,41 @@
         }
         .button-card {
             background-image: url('https://zanahorio326.github.io/Kalculadora/Libro.png');
-            background-size: cover;
-            border: 1px solid #ccc;
+            background-size: contain;
+            background-repeat: no-repeat;
+            border: none;
             border-radius: 5px;
-            padding: 10px;
-            width: 100px;
+            padding: 20px;
+            width: 150px;
+            height: 200px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
         }
         button {
-            padding: 15px 30px;
-            font-size: 1.5rem;
-            background-color: #007bff;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #6c340e;
             color: white;
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            margin-top: 20px;
             transition: background-color 0.3s, transform 0.2s;
+            margin-top: 55px; /* Ajusta este valor para bajar o subir el botón */
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #2b1c03;
             transform: scale(1.05);
         }
         .button-card p {
             color: black;
+            margin-top: 0; /* Elimina el margen superior */
+            margin-bottom: 0; /* Elimina espacio debajo de la descripción */
+            transform: translateY(-65px); /* Ajusta este valor para mover la descripción hacia arriba */
         }
         .inicio-btn {
             position: absolute;
@@ -102,7 +112,7 @@
     <h1>Bibliote - <span class="highlight">K</span></h1>
     <div class="library">
         <div class="button-card">
-            <button onclick="location.href='carpeta1.html'">Carpeta 1</button>
+            <button onclick="location.href='carpeta1.html'">Carpeta 1</button> 
             <p>Descripción de Carpeta 1</p>
         </div>
         <div class="button-card">
@@ -121,26 +131,6 @@
             <button onclick="location.href='carpeta5.html'">Carpeta 5</button>
             <p>Descripción de Carpeta 5</p>
         </div>
-        <div class="button-card">
-            <button onclick="location.href='carpeta6.html'">Carpeta 6</button>
-            <p>Descripción de Carpeta 6</p>
-        </div>
-        <div class="button-card">
-            <button onclick="location.href='carpeta7.html'">Carpeta 7</button>
-            <p>Descripción de Carpeta 7</p>
-        </div>
-        <div class="button-card">
-            <button onclick="location.href='carpeta8.html'">Carpeta 8</button>
-            <p>Descripción de Carpeta 8</p>
-        </div>
-        <div class="button-card">
-            <button onclick="location.href='carpeta9.html'">Carpeta 9</button>
-            <p>Descripción de Carpeta 9</p>
-        </div>
-        <div class="button-card">
-            <button onclick="location.href='carpeta10.html'">Carpeta 10</button>
-            <p>Descripción de Carpeta 10</p>
-        </div>        
     </div>
     <button class="inicio-btn" onclick="location.href='index.html'">Inicio</button>
 </body>
