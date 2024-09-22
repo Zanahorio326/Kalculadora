@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca de Botones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://zanahorio326.github.io/Kalculadora/biblioteca.jpg'); /* Ruta a la imagen */
+            background-size: cover; /* Ajusta la imagen al tamaño de la pantalla */
+            background-position: center; /* Centra la imagen */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            color: white; /* Cambia el color del texto si es necesario */
+        }
+        .library {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para mejorar la legibilidad */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .button-card {
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente para los botones */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Biblioteca de Botones</h1>
+        <div class="library">
+            <div class="button-card">
+                <button onclick="location.href='carpeta1.html'">Carpeta 1</button>
+                <p>Descripción de Carpeta 1</p>
+            </div>
+            <div class="button-card">
+                <button onclick="location.href='carpeta2.html'">Carpeta 2</button>
+                <p>Descripción de Carpeta 2</p>
+            </div>
+            <div class="button-card">
+                <button onclick="location.href='carpeta3.html'">Carpeta 3</button>
+                <p>Descripción de Carpeta 3</p>
+            </div>
+            <div class="button-card">
+                <button onclick="location.href='carpeta4.html'">Carpeta 4</button>
+                <p>Descripción de Carpeta 4</p>
+            </div>
+            <div class="button-card">
+                <button onclick="location.href='carpeta5.html'">Carpeta 5</button>
+                <p>Descripción de Carpeta 5</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
