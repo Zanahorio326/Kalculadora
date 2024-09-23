@@ -42,26 +42,23 @@
       max-height: 100%;
     }
 
-    .book.flipped .page:nth-child(1) {
+    .flipped .page {
       transform: rotateY(-180deg);
     }
 
-    .book.flipped .page:nth-child(2) {
+    .flipped .page:nth-child(n+2) {
       transform: rotateY(0);
-    }
-
-    .book.flipped-back .page:nth-child(2) {
-      transform: rotateY(180deg);
     }
 
     .buttons {
       position: absolute;
-      top: 850px;
+      top: 300px;
       display: flex;
       justify-content: space-between;
-      width: 250px;
+      width: 700px;
       left: 50%;
       transform: translateX(-50%);
+      height: 50px;
     }
 
     button {
@@ -69,26 +66,120 @@
       font-size: 16px;
       cursor: pointer;
     }
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    .book {
+        height: 100vh; /* Altura completa de la ventana */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .page img {
+        height: 100%; /* Ajusta la altura al 100% del contenedor */
+        width: auto;  /* Mantiene la proporción */
+    }
   </style>
 </head>
 <body>
 
   <div class="book" id="book">
-    <div class="page">
-      <img src="paginas/condensadores_pagina-0001.jpg" alt="Página 1">
-    </div>
-    <div class="page">
-      <img src="paginas/condensadores_pagina-0002.jpg" alt="Página 2">
-    </div>
-    <div class="page">
-      <img src="paginas/condensadores_pagina-0003.jpg" alt="Página 3">
-    </div>
-    <div class="page">
-      <img src="paginas/condensadores_pagina-0005.jpg" alt="Página 5">
-    </div>
-    <div class="page">
-      <img src="paginas/condensadores_pagina-0032.jpg" alt="Página 32">
-    </div>
+      <div class="page">
+        <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0001.jpg" alt="Página 1">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0002.jpg" alt="Página 2">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0003.jpg" alt="Página 3">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0005.jpg" alt="Página 5">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0006.jpg" alt="Página 6">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0007.jpg" alt="Página 7">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0008.jpg" alt="Página 8">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0009.jpg" alt="Página 9">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0010.jpg" alt="Página 10">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0011.jpg" alt="Página 11">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0012.jpg" alt="Página 12">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0013.jpg" alt="Página 13">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0014.jpg" alt="Página 14">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0015.jpg" alt="Página 15">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0016.jpg" alt="Página 16">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0017.jpg" alt="Página 17">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0018.jpg" alt="Página 18">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0019.jpg" alt="Página 19">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0020.jpg" alt="Página 20">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0021.jpg" alt="Página 21">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0022.jpg" alt="Página 22">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0023.jpg" alt="Página 23">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0024.jpg" alt="Página 24">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0025.jpg" alt="Página 25">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0026.jpg" alt="Página 26">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0027.jpg" alt="Página 27">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0028.jpg" alt="Página 28">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0029.jpg" alt="Página 29">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0030.jpg" alt="Página 30">
+        </div>
+        <div class="page">
+          <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0031.jpg" alt="Página 31">
+        </div>
+      <div class="page">
+        <img src="https://zanahorio326.github.io/Kalculadora/paginas/condensadores_page-0032.jpg" alt="Página 32">
+      </div>
   </div>
 
   <div class="buttons">
@@ -104,18 +195,34 @@
     let currentPage = 0;
 
     nextBtn.addEventListener('click', () => {
-      if (currentPage < 4) { // Cambiar a la cantidad de páginas que tienes
-        book.classList.add('flipped');
+      if (currentPage < 31) { // Cambiar a la cantidad de páginas que tienes
         currentPage++;
+        updateBook();
       }
     });
 
     prevBtn.addEventListener('click', () => {
       if (currentPage > 0) {
-        book.classList.remove('flipped');
         currentPage--;
+        updateBook();
       }
     });
+
+    function updateBook() {
+      book.classList.add('flipped');
+      setTimeout(() => {
+        for (let i = 0; i < book.children.length; i++) {
+          if (i === currentPage) {
+            book.children[i].style.display = 'flex'; // Mostrar la página actual
+          } else {
+            book.children[i].style.display = 'none'; // Ocultar otras páginas
+          }
+        }
+        book.classList.remove('flipped');
+      }, 1000); // Duración de la animación
+    }
+    // Inicializar el libro
+    updateBook();
   </script>
 </body>
 </html>
