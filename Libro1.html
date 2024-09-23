@@ -32,27 +32,14 @@
       transform-origin: left;
       transition: transform 1s ease;
       box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .page-content {
-      padding: 40px;
-    }
-
-    .page:nth-child(1) {
-      z-index: 3;
-      background-color: lightblue;
-    }
-
-    .page:nth-child(2) {
-      z-index: 2;
-      background-color: lightgreen;
-      transform: rotateY(180deg);
-    }
-
-    .page:nth-child(3) {
-      z-index: 1;
-      background-color: lightcoral;
-      transform: rotateY(180deg);
+    .page img {
+      max-width: 100%;
+      max-height: 100%;
     }
 
     .book.flipped .page:nth-child(1) {
@@ -88,22 +75,19 @@
 
   <div class="book" id="book">
     <div class="page">
-      <div class="page-content">
-        <h1>Portada</h1>
-        <p>Bienvenido al libro interactivo</p>
-      </div>
+      <img src="paginas/condensadores_pagina-0001.jpg" alt="Página 1">
     </div>
     <div class="page">
-      <div class="page-content">
-        <h1>Página 1</h1>
-        <p>Contenido de la primera página</p>
-      </div>
+      <img src="paginas/condensadores_pagina-0002.jpg" alt="Página 2">
     </div>
     <div class="page">
-      <div class="page-content">
-        <h1>Página 2</h1>
-        <p>Contenido de la segunda página</p>
-      </div>
+      <img src="paginas/condensadores_pagina-0003.jpg" alt="Página 3">
+    </div>
+    <div class="page">
+      <img src="paginas/condensadores_pagina-0005.jpg" alt="Página 5">
+    </div>
+    <div class="page">
+      <img src="paginas/condensadores_pagina-0032.jpg" alt="Página 32">
     </div>
   </div>
 
@@ -120,19 +104,18 @@
     let currentPage = 0;
 
     nextBtn.addEventListener('click', () => {
-      if (currentPage === 0) {
+      if (currentPage < 4) { // Cambiar a la cantidad de páginas que tienes
         book.classList.add('flipped');
         currentPage++;
       }
     });
 
     prevBtn.addEventListener('click', () => {
-      if (currentPage === 1) {
+      if (currentPage > 0) {
         book.classList.remove('flipped');
         currentPage--;
       }
     });
   </script>
-
 </body>
 </html>
