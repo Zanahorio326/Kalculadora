@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Lógica - Edición Básica</title>
+    <style>
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+        }
+        .container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #logicFunction {
+            width: 80%;
+            margin: 10px;
+            padding: 10px;
+            font-size: 1.2em;
+        }
+        .keyboard {
+            display: inline-block;
+        }
+        .keyboard button {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            font-size: 1.2em;
+        }
+        .keyboard .wide-button {
+            width: auto;
+            padding: 10px 20px;
+            font-size: 1.2em;
+        }
+        .keyboard .bottom-buttons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1 style="text-align: center;" translate="no">Calculadora Lógica (3 Bits) - Edición Básica</h1>
+
+<div class="container">
+    <label for="logicFunction"> Kevin Gonzalez <div> Función lógica (solo usando el teclado):</label><br>
+    <input type="text" id="logicFunction" disabled><br><br>
+
+    <div class="keyboard">
+        <!-- Botones del teclado personalizado -->
+        <button onclick="addToFunction('A')">A</button>
+        <button onclick="addToFunction('B')">B</button>
+        <button onclick="addToFunction('C')">C</button>
+        <button onclick="addToFunction('(')">(</button>
+        <button onclick="addToFunction(')')">)</button>
+        <button onclick="addToFunction('+')">+</button>
+        <button onclick="addToFunction('-')">-</button>
+        <button onclick="addToFunction('*')">*</button>
+        <button onclick="addToFunction('/')">/</button>
+
+        <!-- Botones más grandes en la parte inferior -->
+        <div class="bottom-buttons">
+            <button class="wide-button" onclick="addNegation()">Negado</button>
+            <button class="wide-button" onclick="clearFunction()">Limpiar</button>
+            <button class="wide-button" onclick="calculateFunction()">Calcular</button>
+        </div>
+    </div>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+            <th>Resultado</th>
+        </tr>
+    </thead>
+    <tbody id="truthTable">
+        <!-- Filas generadas por JavaScript -->
+    </tbody>
+</table>
+
+<script>
+    // Generar la tabla de verdad para A, B, C
+    function generateTruthTable() {
+        const table = document.getElementById("truthTable");
+        table.innerHTML = ''; // Limpiar la tabla
+        for (let i = 0; i < 8; i++) {
+            let a = (i >> 2) & 1;  // Tercer bit (A)
+            let b = (i >> 1) & 1;  // Segundo bit (B)
+            let c = i & 1;         // Primer bit (C)
+
+            // Crear fila en la tabla
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${a}</td>
+                <td>${b}</td>
+                <td>${c}</td>
+                <td id="result-${i}">-</td>
+            `;
+            table.appendChild(row);
+        }
+    }
+
+    // Añadir un operador o variable a la función lógica
+    function addToFunction(value) {
+        const logicFunction = document.getElementById("logicFunction");
+        logicFunction.value += value;
+    }
+
+    // Añadir la operación "Negado" (que es equivalente a "-1 * valor" o "!valor")
+    function addNegation() {
+        const logicFunction = document.getElementById("logicFunction");
+        logicFunction.value += "(-1*";
+    }
+
+    // Limpiar la función
+    function clearFunction() {
+        document.getElementById("logicFunction").value = '';
+        // Limpiar resultados de la tabla
+        for (let i = 0; i < 8; i++) {
+            document.getElementById(`result-${i}`).innerText = '-';
+        }
+    }
+    // Calcular la función lógica introducida por el usuario
+    function calculateFunction() {
+        const logicFunction = document.getElementById("logicFunction").value;
+        for (let i = 0; i < 8; i++) {
+            let a = (i >> 2) & 1;
+            let b = (i >> 1) & 1;
+            let c = i & 1;
+
+            try {
+                // Evaluar la función lógica usando eval (evaluación de A, B, C)
+                const result = eval(logicFunction.replace(/A/g, a).replace(/B/g, b).replace(/C/g, c));
+                document.getElementById(`result-${i}`).innerText = result ? 1 : 0;  // Mostrar 1 o 0 según el resultado
+            } catch (error) {
+                alert("Error en la función lógica. Por favor, revisa la sintaxis.");
+                break;
+            }
+        }
+    }
+    // Generar la tabla de verdad inicial
+    generateTruthTable();
+</script>
+</body>
+</html>
