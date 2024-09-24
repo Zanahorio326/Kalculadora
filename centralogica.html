@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalculadora</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0d0d0d; /* Fondo oscuro */
+            font-family: 'Arial', sans-serif;
+            color: #fff; /* Color de texto blanco */
+        }
+        h1 {
+            font-size: 4rem;
+            color: #00ffcc; /* Color eléctrico */
+            animation: glow 1s infinite alternate; /* Animación de resplandor */
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; }
+            100% { text-shadow: 0 0 40px #00ffcc, 0 0 30px #00ffcc; }
+        }
+        .highlight {
+            color: #ff4500; /* Color para resaltar la letra K */
+            font-weight: bold;
+            font-size: 8rem; /* Aumentar tamaño de la K para destacar */
+            text-shadow: 0 0 50px #ff4500; /* Sombra para resaltar */
+            animation: drop 10.8s forwards, bounce 20.5s 10.8s forwards, scaleRotate 3s 3.3s forwards, pulse 3s infinite; /* Animaciones de caída, rebote, escala/rotación y pulso */
+        }
+        @keyframes drop {
+            0% {
+                transform: translateY(-100vh) rotate(0deg); /* Comienza fuera de la pantalla */
+                opacity: 0;
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(100px) rotate(15deg); /* Caída con rotación */
+            }
+            100% {
+                transform: translateY(0) rotate(-5deg); /* Se detiene en su posición original con un leve giro */
+            }
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0); /* Regresa a su posición original */
+            }
+            50% {
+                transform: translateY(-40px); /* Rebote hacia arriba */
+            }
+        }
+        @keyframes scaleRotate {
+            0% {
+                transform: scale(1) rotate(0deg); /* Escala y rotación inicial */
+            }
+            50% {
+                transform: scale(10) rotate(20deg); /* Aumenta el tamaño y rota */
+            }
+            100% {
+                transform: scale(1) rotate(0deg); /* Regresa a su tamaño original */
+            }
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1); /* Tamaño original */
+            }
+            50% {
+                transform: scale(3.1); /* Aumenta ligeramente */
+            }
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
+        }
+    </style>
+</head>
+<body>
+    <h1><span class="highlight">K</span>alculadora</h1>
+    <button onclick="location.href='logica.html'">Tabla de Verdad (3Bits)</button>
+</div>
+    <button onclick="location.href='logica4bits.html'">Tabla de Verdad (4Bits)</button>
+</div>
+    <button onclick="location.href='mantenimiento.html'">Próximamente</button>
+</div>
+    <button onclick="location.href='mantenimiento.html'">Próximamente</button>
+</div>
+    <button onclick="location.href='index.html'">Inicio</button>
+</body>
+</html>
