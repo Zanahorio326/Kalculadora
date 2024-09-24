@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página en Mantenimiento</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        img {
+            width: 50%; /* Ajusta el tamaño de la imagen */
+            height: auto;
+            margin-top: 20px;
+        }
+        button {
+            background-color: yellow; /* Color del botón */
+            border: none;
+            padding: 15px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            animation: pulse 1s infinite; /* Animación de pulso */
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Esta página está bajo mantenimiento</h1>
+    <img src="https://zanahorio326.github.io/Kalculadora/Reparando.png" alt="Página en mantenimiento">
+    <button onclick="location.href='index.html'">Inicio</button>
+</body>
+</html>
