@@ -1,0 +1,148 @@
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Informe sobre la actividad reproductiva en enero en Chile</title>
+      <style>
+          body {
+              font-family: 'Arial', sans-serif;
+              line-height: 1.6;
+              margin: 0;
+              padding: 0;
+              background-color: #f0f8ff;
+          }
+          header {
+              background-color: #0056b3;
+              color: white;
+              padding: 20px;
+              text-align: center;
+          }
+          h1 {
+              margin: 0;
+          }
+          .container {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              padding: 20px;
+          }
+          .card {
+              background-color: white;
+              border: 1px solid #ddd;
+              border-radius: 8px;
+              box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+              margin: 15px;
+              padding: 10px;
+              width: 80%;
+              max-width: 600px;
+          }
+          h2 {
+              color: #007bff;
+              margin-top: 0;
+              cursor: pointer;
+          }
+          .content {
+              display: none; /* Oculta el contenido por defecto */
+              padding: 10px 0;
+          }
+          ul {
+              list-style-type: none;
+              margin-left: 0;
+              padding: 10px;
+          }
+          li {
+              margin: 10px 0;
+              padding-left: 35px;
+              position: relative;
+          }
+          li::before {
+              position: absolute;
+              left: 0;
+              font-size: 1.2em;
+          }
+          .social li::before {
+              content: '👥'; /* Icono de personas para temas sociales */
+          }
+          .biological li::before {
+              content: '🧬'; /* Icono de ADN para temas biológicos */
+          }
+          .psychological li::before {
+              content: '🧠'; /* Icono de cerebro para temas psicológicos */
+          }
+          strong {
+              color: #d9534f;
+          }
+          footer {
+              text-align: center;
+              margin-top: 20px;
+              font-size: 0.9em;
+              color: #666;
+          }
+      </style>
+      <script>
+          function toggleContent(event) {
+              const content = event.nextElementSibling;
+              if (content.style.display === "block") {
+                  content.style.display = "none";
+              } else {
+                  content.style.display = "block";
+              }
+          }
+      </script>
+  </head>
+  <body>
+      <header>
+          <h1>Informe sobre la actividad reproductiva en enero en Chile</h1>
+      </header>
+      <div class="container">
+          <div class="card">
+              <p>En Chile, enero podría ser un período de mayor actividad reproductiva, especialmente alrededor del 1 de enero. Esto se deduce de la alta cantidad de nacimientos registrados en septiembre y octubre, lo que sugiere que muchas concepciones ocurren entre diciembre y enero, considerando que la gestación dura unos nueve meses. Este fenómeno puede explicarse por una combinación de factores climáticos, sociales, biológicos y emocionales que convergen en esta época del año.</p>
+          </div>
+          
+          <div class="card">
+              <h2 onclick="toggleContent(this)">Factores sociales y económicos</h2>
+              <div class="content social">
+                  <ul>
+                      <li><strong>Fin de las festividades:</strong> La tensión de las compras navideñas y las reuniones familiares disminuye, dando paso a un período más relajado.</li>
+                      <li><strong>Mayor estabilidad económica:</strong> Los aguinaldos recibidos en diciembre brindan tranquilidad financiera al comenzar el año.</li>
+                      <li><strong>Menos preocupaciones inmediatas:</strong> En enero, las principales preocupaciones suelen ser el trabajo o las vacaciones, sin la carga de otros eventos estresantes.</li>
+                      <li><strong>Flexibilidad laboral:</strong> En muchos sectores, enero es un mes con menor carga laboral o incluso vacaciones, lo que permite más tiempo para la vida personal.</li>
+                      <li><strong>Clima propicio para el ocio:</strong> El verano favorece reuniones sociales y escapadas de pareja, aumentando las oportunidades para la intimidad.</li>
+                  </ul>
+              </div>
+          </div>
+          
+          <div class="card">
+              <h2 onclick="toggleContent(this)">Factores biológicos y hormonales</h2>
+              <div class="content biological">
+                  <ul>
+                      <li><strong>Mayor exposición a la luz solar:</strong> Aumenta la producción de serotonina, mejorando el estado de ánimo y reduciendo el estrés, lo que puede influir en la actividad sexual.</li>
+                      <li><strong>Producción de vitamina D:</strong> Se ha relacionado con un mejor equilibrio hormonal y un aumento de la libido.</li>
+                      <li><strong>Menor producción de melatonina:</strong> Los días más largos reducen esta hormona que induce el sueño, favoreciendo una mayor energía y deseo sexual.</li>
+                      <li><strong>Mayor actividad física:</strong> El verano impulsa a muchas personas a practicar más deporte o estar más activas, lo que mejora la salud y el bienestar general.</li>
+                      <li><strong>Ropa más ligera:</strong> El calor hace que las personas usen menos ropa, lo que podría influir en la atracción y la interacción social.</li>
+                  </ul>
+              </div>
+          </div>
+          
+          <div class="card">
+              <h2 onclick="toggleContent(this)">Factores psicológicos y emocionales</h2>
+              <div class="content psychological">
+                  <ul>
+                      <li><strong>Inicio de un nuevo ciclo:</strong> El Año Nuevo marca un período de renovación y nuevas metas, generando mayor apertura emocional y deseo de conexión.</li>
+                      <li><strong>Menos estrés por responsabilidades escolares:</strong> El receso escolar reduce el estrés asociado a las tareas y rutinas, facilitando el tiempo en pareja para quienes tienen hijos.</li>
+                      <li><strong>Mayor sensación de libertad:</strong> Las vacaciones permiten menos restricciones y más espontaneidad en las relaciones.</li>
+                  </ul>
+              </div>
+          </div>
+          
+          <div class="card">
+              <p>En resumen, la combinación de estos factores hace que enero, y en particular los días cercanos al 1 de enero, sea un período especialmente propicio para la reproducción en Chile.</p>
+          </div>
+      </div>
+      <footer>
+          <p>Informe elaborado en 2025 por Kevin González. Todos los derechos reservados.</p>
+      </footer>
+  </body>
+  </html>
